@@ -1,5 +1,5 @@
-import test from "ava";
-import easydot from "../dist/easydot.js";
+const easydot = require("../dist/easydot.js");
+const test = require("ava");
 
 const getOriginData = () => ({
   what: {
