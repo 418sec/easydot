@@ -1,4 +1,14 @@
 /**
+ * Returns true, if given key is included in the blacklisted
+ * keys.
+ * @param {String} key key for check, string.
+ * @returns {Boolean}.
+ */
+function isPrototypePolluted(key) {
+  return ['__proto__', 'prototype', 'constructor'].includes(key);
+}
+
+/**
  * Wrapper function to implement `dot-string acccess` for target object
  *
  * @param {Object} target
@@ -44,6 +54,7 @@ export default (target, safeOverJump = false) => {
     const lastKey = keys.pop();
     let tmp = target;
     keys.forEach(key => {
+      if (isPrototypePolluted(key)) return;
       if (safeOverJump && typeof tmp[key] === "undefined" || tmp[key] === null) {
         tmp[key] = {};
       }
