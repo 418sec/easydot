@@ -54,7 +54,7 @@ export default (target, safeOverJump = false) => {
     const lastKey = keys.pop();
     let tmp = target;
     keys.forEach(key => {
-      if (isPrototypePolluted(key)) return;
+      if (isPrototypePolluted(key)) return false;
       if (safeOverJump && typeof tmp[key] === "undefined" || tmp[key] === null) {
         tmp[key] = {};
       }
