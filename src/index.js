@@ -45,7 +45,7 @@ export default (target, safeOverJump = false) => {
     let tmp = target;
     keys.forEach(key => {
       if (tmp[key] == '__proto__' || tmp[key] == 'prototype' || tmp[key] == 'constructor') {
-        continue;
+        return;
       }
       if (safeOverJump && typeof tmp[key] === "undefined" || tmp[key] === null) {
         tmp[key] = {};
